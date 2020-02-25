@@ -755,3 +755,53 @@ function twentytwenty_get_elements_array() {
 	*/
 	return apply_filters( 'twentytwenty_get_elements_array', $elements );
 }
+
+
+//---------------------------------------//
+// 内部リンクのブログカード化（ショートコード）
+// ここから
+//---------------------------------------//
+
+// 記事IDを指定して抜粋文を取得する
+function ltl_get_the_excerpt($post_id){
+  global $post;
+  $post_bu = $post;
+  $post = get_post($post_id);
+  setup_postdata($post_id);
+  $output = get_the_excerpt();
+  $post = $post_bu;
+  return $output;
+}
+
+//内部リンクをはてなカード風にするショートコード
+function nlink_scode($atts) {
+	extract(shortcode_atts(array(
+		'url'=>"",
+		'title'=>"",
+		'excerpt'=>""
+	),$atts));
+
+  $id = url_to_postid($url);//URLから投稿IDを取得
+  
+	//タイトルを取得
+	if(empty($title)){
+		$title = esc_html(get_the_title($id));
+	}
+	$nlink .='
+<div class="blog-card">
+  <a href="'. $url .'">
+      <div class="blog-card-content">
+          <div class="blog-card-title">'. $title .' </div>
+      </div>
+      <div class="clear"></div>
+  </a>
+</div>';
+
+	return $nlink;
+}
+
+add_shortcode("nlink", "nlink_scode");
+//---------------------------------------//
+// ここまで
+// 内部リンクのブログカード化（ショートコード）
+//---------------------------------------//

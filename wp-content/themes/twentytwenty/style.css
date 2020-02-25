@@ -6371,3 +6371,45 @@ a.to-the-top>* {
 		top: 0;
 	}
 }
+
+
+/*-------------------------
+  ブログカード
+-------------------------*/
+.blog-card {
+	background: #fbfaf8;
+	border: 1px solid #ddd;
+	word-wrap: break-word;
+	max-width: 100%;
+	border-radius: 5px;
+	margin: 30px;
+	/* sp用 ※4 */
+}
+
+.blog-card:hover {
+	background: #fee;
+}
+
+.blog-card a {
+	text-decoration: none;
+}
+
+.blog-card-title {
+	color: #337ab7;
+	display: block;
+}
+
+.blog-card-content {
+	line-height: 120%;
+}
+
+.blog-card-title {
+	padding: 10px 10px 10px 0;
+	font-size: 120%;
+	font-weight: bold;
+	line-height: 1.5em;
+}
+
+.blog-card .clear {
+	clear: both;
+}
